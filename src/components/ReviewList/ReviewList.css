@@ -1,0 +1,29 @@
+.review-list {
+  padding: 1.5rem;
+  background-color: #1f1f1f;
+  color: #fff;
+  border-radius: 1rem;
+  margin: 1rem;
+}
+
+.review-card {
+  background-color: #2b2b2b;
+  padding: 1rem;
+  border-radius: 0.8rem;
+  margin-bottom: 1rem;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+.review-card h3 {
+  color: #00b4d8;
+}
+
+.review-text {
+  margin: 0.5rem 0;
+  font-style: italic;
+}
+
+.review-rating {
+  color: #ffd60a;
+  font-weight: bold;
+}

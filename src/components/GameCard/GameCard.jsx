@@ -1,8 +1,10 @@
 import React from 'react';
 import StarRating from '../StarRating/StarRating';
+import ReviewList from '../ReviewList/ReviewList';
+import ReviewForm from '../ReviewForm/ReviewForm';
 import './GameCard.css';
 
-function GameCard({ title, platform, coverUrl, rating, hoursPlayed }) {
+function GameCard({ _id, title, platform, coverUrl, rating, hoursPlayed }) {
   return (
     <div className="game-card">
       <img 
@@ -18,6 +20,9 @@ function GameCard({ title, platform, coverUrl, rating, hoursPlayed }) {
           <span>🕒 {hoursPlayed}h</span>
         </div>
       </div>
+
+      <ReviewList gameId={_id} />
+      <ReviewForm gameId={_id} />
     </div>
   );
 }
