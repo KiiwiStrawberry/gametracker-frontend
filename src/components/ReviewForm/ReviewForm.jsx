@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import "./ReviewForm.css";
+import StarRating from "../StarRating/StarRating"; // ⭐ usa tu sistema existente
 
 function ReviewForm({ gameId, onReviewAdded }) {
-  const [rating, setRating] = useState(0);
   const [text, setText] = useState("");
+  const [rating, setRating] = useState(0);
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState("");
 
@@ -16,7 +17,7 @@ function ReviewForm({ gameId, onReviewAdded }) {
       const response = await fetch("http://localhost:5000/api/reviews", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ gameId, rating, text }),
+        body: JSON.stringify({ gameId, text, rating }),
       });
 
       if (!response.ok) throw new Error("Error al enviar reseña");
@@ -25,7 +26,7 @@ function ReviewForm({ gameId, onReviewAdded }) {
       setText("");
       setRating(0);
 
-      if (onReviewAdded) onReviewAdded(); // refresca la lista si se envía correctamente
+      if (onReviewAdded) onReviewAdded(); // refresca la lista si aplica
     } catch (error) {
       console.error(error);
       setMessage("❌ Error al enviar la reseña");
@@ -36,30 +37,27 @@ function ReviewForm({ gameId, onReviewAdded }) {
 
   return (
     <form className="review-form" onSubmit={handleSubmit}>
-      <h3>Escribir reseña</h3>
+      <h3>✍️ Escribir reseña</h3>
 
-      <label>Puntuación:</label>
-      <div className="stars">
-        {[1, 2, 3, 4, 5].map((num) => (
-          <span
-            key={num}
-            className={num <= rating ? "star filled" : "star"}
-            onClick={() => setRating(num)}
-          >
-            ★
-          </span>
-        ))}
+      <div className="form-group">
+        <label>Puntuación ⭐</label>
+        <div className="star">
+            <StarRating rating={rating} onRatingChange={setRating} />
+        </div>
       </div>
 
-      <textarea
-        value={text}
-        onChange={(e) => setText(e.target.value)}
-        placeholder="Escribe aquí tu reseña..."
-        required
-      />
+      <div className="form-group">
+        <label>Comentario</label>
+        <textarea
+          value={text}
+          onChange={(e) => setText(e.target.value)}
+          required
+          placeholder="Escribe tu experiencia con este juego..."
+        />
+      </div>
 
-      <button type="submit" disabled={loading}>
-        {loading ? "Enviando..." : "Publicar Reseña"}
+      <button type="submit" disabled={loading} className="submit-btn">
+        {loading ? "Enviando..." : "Publicar reseña"}
       </button>
 
       {message && <p className="review-message">{message}</p>}

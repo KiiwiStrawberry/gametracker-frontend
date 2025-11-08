@@ -46,7 +46,8 @@
 
 .form-row {
   display: flex;
-  gap: 1rem;
+  justify-content: center;
+  gap: 10rem;
 }
 
 .submit-btn {
@@ -64,5 +65,5 @@
 
 .submit-btn:hover {
   background-color: #0096c7;
-  transform: scale(1.03);
+  transform: translateY(-2px);
 }
