@@ -1,4 +1,5 @@
 import React from 'react';
+import StarRating from '../StarRating/StarRating';
 import './GameCard.css';
 
 function GameCard({ title, platform, coverUrl, rating, hoursPlayed }) {
@@ -13,7 +14,7 @@ function GameCard({ title, platform, coverUrl, rating, hoursPlayed }) {
         <h3 className="game-card__title">{title}</h3>
         <p className="game-card__platform">{platform}</p>
         <div className="game-card__stats">
-          <span>⭐ {rating}/5</span>
+          <StarRating rating={rating} />
           <span>🕒 {hoursPlayed}h</span>
         </div>
       </div>

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import StarRating from '../StarRating/StarRating';
 import './GameForm.css';
 
 function GameForm({ onSubmit }) {
@@ -6,14 +7,14 @@ function GameForm({ onSubmit }) {
     title: '',
     platform: '',
     coverUrl: '',
-    rating: 0,
-    hoursPlayed: 0
+    rating: '',
+    hoursPlayed: ''
   });
 
   const handleSubmit = (e) => {
     e.preventDefault();
     onSubmit(game);
-    setGame({ title: '', platform: '', coverUrl: '', rating: 0, hoursPlayed: 0 });
+    setGame({ title: '', platform: '', coverUrl: '', rating: '', hoursPlayed: '' });
   };
 
   return (
@@ -53,15 +54,10 @@ function GameForm({ onSubmit }) {
       </div>
 
       <div className="form-group">
-        <label htmlFor="rating">Calificación (0-5)</label>
-        <input
-          type="number"
-          id="rating"
-          min="0"
-          max="5"
-          value={game.rating}
-          onChange={(e) => setGame({...game, rating: Number(e.target.value)})}
-          required
+        <label>Calificación</label>
+        <StarRating 
+          rating={Number(game.rating)}
+          onRatingChange={(newRating) => setGame({...game, rating: newRating})}
         />
       </div>
 
@@ -72,7 +68,7 @@ function GameForm({ onSubmit }) {
           id="hoursPlayed"
           min="0"
           value={game.hoursPlayed}
-          onChange={(e) => setGame({...game, hoursPlayed: Number(e.target.value)})}
+          onChange={(e) => setGame({...game, hoursPlayed: e.target.value})}
           required
         />
       </div>
