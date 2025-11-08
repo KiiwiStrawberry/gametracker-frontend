@@ -42,7 +42,7 @@ function ReviewForm({ gameId, onReviewAdded }) {
       <div className="form-group">
         <label>Puntuación ⭐</label>
         <div className="star">
-            <StarRating rating={rating} onRatingChange={setRating} />
+            <StarRating rating={rating} onRatingChange={setRating} mode="interactive" />
         </div>
       </div>
 

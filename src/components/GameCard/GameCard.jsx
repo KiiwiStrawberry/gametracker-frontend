@@ -16,7 +16,7 @@ function GameCard({ _id, title, platform, coverUrl, rating, hoursPlayed }) {
         <h3 className="game-card__title">{title}</h3>
         <p className="game-card__platform">{platform}</p>
         <div className="game-card__stats">
-          <StarRating rating={rating} />
+          <StarRating rating={rating} mode="display" />
           <span>🕒 {hoursPlayed}h</span>
         </div>
       </div>

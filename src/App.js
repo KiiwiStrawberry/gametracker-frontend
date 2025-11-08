@@ -25,7 +25,6 @@ function App() {
   const [darkMode, setDarkMode] = useState(true);
 
   useEffect(() => {
-    // Cambiar la clase del body según el modo
     document.body.classList.toggle("light-mode", !darkMode);
   }, [darkMode]);
 
@@ -35,7 +34,6 @@ function App() {
 
   return (
     <div className="App">
-      {/* 🌗 Botón de modo oscuro */}
       <button 
         className="toggle-theme-btn" 
         onClick={() => setDarkMode(!darkMode)}

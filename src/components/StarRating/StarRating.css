@@ -1,18 +1,55 @@
 .star-rating {
-  display: inline-flex;
-  gap: 4px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.25rem;
+  direction: ltr;
 }
 
 .star {
-  cursor: pointer;
-  opacity: 0.3;
-  transition: opacity 0.2s;
+  font-size: 1.4rem;
+  color: #555;
+  transition: color 0.25s ease, text-shadow 0.25s ease, transform 0.25s ease;
 }
 
 .star.filled {
-  opacity: 1;
+  color: gold;
+  transform: scale(1.05);
+  text-shadow: 0 0 8px rgba(255, 215, 0, 0.5);
 }
 
-.star:hover {
-  transform: scale(1.1);
+.star.animate {
+  animation: starPop 0.3s ease forwards;
+}
+
+@keyframes starPop {
+  0% {
+    transform: scale(0.3);
+    opacity: 0;
+  }
+  60% {
+    transform: scale(1.4);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1.05);
+  }
+}
+
+.star-rating.interactive .star {
+  cursor: pointer;
+}
+
+.star-rating.interactive .star:hover {
+  color: #ffe066;
+  text-shadow: 0 0 10px rgba(255, 223, 0, 0.8),
+               0 0 18px rgba(255, 200, 0, 0.5);
+  transform: scale(1.15);
+}
+
+.star-rating.display .star {
+  cursor: default;
+  pointer-events: none;
+  text-shadow: none;
+  transform: scale(1);
 }

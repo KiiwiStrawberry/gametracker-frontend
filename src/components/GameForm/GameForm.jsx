@@ -80,7 +80,11 @@ function GameForm({ onSubmit }) {
 
         <div className="form-group">
           <label>Puntuación ⭐</label>
-          <StarRating rating={newGame.rating} onRatingChange={handleRatingChange} />
+          <StarRating
+            rating={newGame.rating}
+            onRatingChange={handleRatingChange}
+            mode="interactive"
+          />
         </div>
       </div>
 
