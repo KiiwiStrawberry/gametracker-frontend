@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './styles/App.css';
 import GameList from './components/GameList/GameList';
 import GameForm from './components/GameForm/GameForm';
+import PersonalStats from './components/PersonalStats/PersonalStats';
 
 function App() {
   const [games, setGames] = useState([
@@ -21,18 +22,35 @@ function App() {
     }
   ]);
 
+  const [darkMode, setDarkMode] = useState(true);
+
+  useEffect(() => {
+    // Cambiar la clase del body según el modo
+    document.body.classList.toggle("light-mode", !darkMode);
+  }, [darkMode]);
+
   const handleAddGame = (newGame) => {
     setGames([...games, newGame]);
   };
 
   return (
     <div className="App">
+      {/* 🌗 Botón de modo oscuro */}
+      <button 
+        className="toggle-theme-btn" 
+        onClick={() => setDarkMode(!darkMode)}
+        title="Cambiar tema"
+      >
+        {darkMode ? "🌞" : "🌙"}
+      </button>
+
       <header>
         <h1>GameTracker</h1>
       </header>
       <main>
         <GameForm onSubmit={handleAddGame} />
         <GameList games={games} />
+        <PersonalStats games={games} />
       </main>
     </div>
   );

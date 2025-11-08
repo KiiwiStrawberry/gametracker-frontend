@@ -1,79 +1,90 @@
-import React, { useState } from 'react';
-import StarRating from '../StarRating/StarRating';
-import './GameForm.css';
+import React, { useState } from "react";
+import "./GameForm.css";
+import StarRating from "../StarRating/StarRating";
 
 function GameForm({ onSubmit }) {
-  const [game, setGame] = useState({
-    title: '',
-    platform: '',
-    coverUrl: '',
-    rating: '',
-    hoursPlayed: ''
+  const [newGame, setNewGame] = useState({
+    title: "",
+    platform: "",
+    coverUrl: "",
+    rating: 0,
+    hoursPlayed: 0,
   });
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setNewGame({ ...newGame, [name]: value });
+  };
+
+  const handleRatingChange = (value) => {
+    setNewGame({ ...newGame, rating: value });
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onSubmit(game);
-    setGame({ title: '', platform: '', coverUrl: '', rating: '', hoursPlayed: '' });
+    onSubmit(newGame);
+    setNewGame({ title: "", platform: "", coverUrl: "", rating: 0, hoursPlayed: 0 });
   };
 
   return (
-    <form className="game-form" onSubmit={handleSubmit}>
-      <h2>Añadir Nuevo Juego</h2>
-      
+    <form className="game-form card" onSubmit={handleSubmit}>
+      <h2>🎮 Agregar nuevo juego</h2>
+
       <div className="form-group">
-        <label htmlFor="title">Título</label>
+        <label>Título</label>
         <input
           type="text"
-          id="title"
-          value={game.title}
-          onChange={(e) => setGame({...game, title: e.target.value})}
+          name="title"
+          value={newGame.title}
+          onChange={handleChange}
           required
+          placeholder="Ej: The Legend of Zelda"
         />
       </div>
 
       <div className="form-group">
-        <label htmlFor="platform">Plataforma</label>
+        <label>Plataforma</label>
         <input
           type="text"
-          id="platform"
-          value={game.platform}
-          onChange={(e) => setGame({...game, platform: e.target.value})}
+          name="platform"
+          value={newGame.platform}
+          onChange={handleChange}
           required
+          placeholder="Ej: Nintendo Switch"
         />
       </div>
 
       <div className="form-group">
-        <label htmlFor="coverUrl">URL de Portada</label>
+        <label>URL de portada</label>
         <input
           type="url"
-          id="coverUrl"
-          value={game.coverUrl}
-          onChange={(e) => setGame({...game, coverUrl: e.target.value})}
+          name="coverUrl"
+          value={newGame.coverUrl}
+          onChange={handleChange}
+          placeholder="https://..."
         />
       </div>
 
-      <div className="form-group">
-        <label>Calificación</label>
-        <StarRating 
-          rating={Number(game.rating)}
-          onRatingChange={(newRating) => setGame({...game, rating: newRating})}
-        />
+      <div className="form-row">
+        <div className="form-group">
+          <label>Horas jugadas</label>
+          <input
+            type="number"
+            name="hoursPlayed"
+            value={newGame.hoursPlayed}
+            onChange={handleChange}
+            min="0"
+            placeholder="Ej: 40"
+          />
+        </div>
+
+        <div className="form-group">
+          <label>Puntuación ⭐</label>
+          <StarRating rating={newGame.rating} onRatingChange={handleRatingChange} />
+        </div>
       </div>
 
-      <div className="form-group">
-        <label htmlFor="hoursPlayed">Horas Jugadas</label>
-        <input
-          type="number"
-          id="hoursPlayed"
-          min="0"
-          value={game.hoursPlayed}
-          onChange={(e) => setGame({...game, hoursPlayed: e.target.value})}
-          required
-        />
-      </div>
-
-      <button type="submit">Añadir Juego</button>
+      <button type="submit" className="submit-btn">Agregar Juego</button>
     </form>
   );
 }

@@ -1,42 +1,68 @@
 .game-form {
-  max-width: 500px;
-  margin: 2rem auto;
-  padding: 2rem;
-  background: white;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  background-color: var(--card-color);
+  color: var(--text-color);
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin-bottom: 1.8rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+}
+
+.game-form h2 {
+  color: var(--accent-color);
+  text-align: center;
+  margin-bottom: 0.5rem;
 }
 
 .form-group {
-  margin-bottom: 1rem;
+  display: flex;
+  flex-direction: column;
 }
 
 .form-group label {
-  display: block;
-  margin-bottom: 0.5rem;
-  color: #333;
+  font-weight: 600;
+  font-size: 0.9rem;
+  margin-bottom: 0.3rem;
+  color: var(--accent-color);
 }
 
 .form-group input {
-  width: 100%;
-  padding: 0.5rem;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  font-size: 1rem;
+  background-color: var(--secondary-color);
+  color: var(--text-color);
+  border: 1px solid #333;
+  border-radius: 8px;
+  padding: 0.6rem;
+  font-size: 0.9rem;
+  transition: border 0.3s, background-color 0.3s;
 }
 
-button[type="submit"] {
-  width: 100%;
-  padding: 0.75rem;
-  background: #4CAF50;
-  color: white;
+.form-group input:focus {
+  border-color: var(--accent-color);
+  outline: none;
+  background-color: #262626;
+}
+
+.form-row {
+  display: flex;
+  gap: 1rem;
+}
+
+.submit-btn {
+  background-color: var(--accent-color);
+  color: #fff;
   border: none;
-  border-radius: 4px;
+  border-radius: 10px;
+  padding: 0.8rem;
   font-size: 1rem;
+  font-weight: 600;
   cursor: pointer;
-  transition: background 0.2s;
+  transition: background 0.3s, transform 0.2s;
+  margin-top: 0.5rem;
 }
 
-button[type="submit"]:hover {
-  background: #45a049;
+.submit-btn:hover {
+  background-color: #0096c7;
+  transform: scale(1.03);
 }
