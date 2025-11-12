@@ -3,10 +3,10 @@ import "./PersonalStats.css";
 
 function PersonalStats() {
   const [stats, setStats] = useState({
-    totalGames: 12,
-    completedGames: 5,
-    averageRating: 4.2,
-    totalHours: 147,
+    totalGames: 0,
+    completedGames: 0,
+    averageRating: 0,
+    totalHours: 0,
   });
 
   const [error, setError] = useState(null);
@@ -16,12 +16,10 @@ function PersonalStats() {
       try {
         const response = await fetch("http://localhost:5000/api/games/stats");
 
-        // Si el backend no responde o devuelve algo inesperado
         if (!response.ok) throw new Error("Error al conectar con el servidor.");
 
         const data = await response.json();
 
-        // Validar estructura de datos recibidos
         setStats({
           totalGames: data.totalGames ?? 0,
           completedGames: data.completedGames ?? 0,
@@ -41,8 +39,11 @@ function PersonalStats() {
     <div className="stats-container">
       <h2>Estadísticas Personales</h2>
 
-      {error && <p className="error-message">{error}</p>}
-
+      {error && <p className="error-text">{error}</p>}
+         
+      {!stats.totalGames ? (
+      <p>Cargando estadísticas...</p>
+      ) : (
       <div className="stats-grid">
         <div className="stat-card">
           <h3>🎮 Total de juegos</h3>
@@ -61,6 +62,7 @@ function PersonalStats() {
           <p>{stats.totalHours}</p>
         </div>
       </div>
+      )}
     </div>
   );
 }
