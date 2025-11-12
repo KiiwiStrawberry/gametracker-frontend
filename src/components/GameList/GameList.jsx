@@ -6,7 +6,7 @@ function GameList({ games }) {
   return (
     <div className="game-list">
       {games.map((game, index) => (
-        <GameCard key={index} {...game} />
+        <GameCard key={game.id || game.title || index} {...game} />
       ))}
     </div>
   );

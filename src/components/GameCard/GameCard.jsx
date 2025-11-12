@@ -20,7 +20,6 @@ function GameCard({ _id, title, platform, coverUrl, rating, hoursPlayed }) {
           <span>🕒 {hoursPlayed}h</span>
         </div>
       </div>
-
       <ReviewList gameId={_id} />
       <ReviewForm gameId={_id} />
     </div>

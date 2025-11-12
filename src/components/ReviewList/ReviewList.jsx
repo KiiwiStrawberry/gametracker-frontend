@@ -21,15 +21,17 @@ function ReviewList({ gameId }) {
 
     fetchReviews();
   }, [gameId]);
-
-  return (
+    return (
     <div className="review-list">
       <h2>Reseñas</h2>
       {reviews.length === 0 ? (
         <p>No hay reseñas disponibles.</p>
       ) : (
-        reviews.map((review) => (
-          <div className="review-card" key={review._id}>
+        reviews.map((review, index) => (
+          <div 
+            className="review-card"
+            key={`${review._id || review.gameTitle || "review"}-${index}`}
+          >
             <h3>{review.gameTitle}</h3>
             <p className="review-text">{review.text}</p>
             <p className="review-rating">⭐ {review.rating}/5</p>

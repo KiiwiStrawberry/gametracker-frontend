@@ -9,14 +9,14 @@ function App() {
     {
       title: "The Legend of Zelda",
       platform: "Nintendo Switch",
-      coverUrl: "https://via.placeholder.com/150",
+      coverUrl: "https://placehold.co/150x150?text=Zelda",
       rating: 5,
       hoursPlayed: 40
     },
     {
       title: "God of War",
       platform: "PlayStation 4",
-      coverUrl: "https://via.placeholder.com/150",
+      coverUrl: "https://placehold.co/150x150?text=GOW",
       rating: 4,
       hoursPlayed: 30
     }
