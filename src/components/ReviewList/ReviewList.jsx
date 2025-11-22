@@ -32,7 +32,6 @@ function ReviewList({ gameId }) {
             className="review-card"
             key={`${review._id || review.gameTitle || "review"}-${index}`}
           >
-            <h3>{review.gameTitle}</h3>
             <p className="review-text">{review.text}</p>
             <p className="review-rating">⭐ {review.rating}/5</p>
             <small>

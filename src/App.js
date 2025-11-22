@@ -7,19 +7,21 @@ import PersonalStats from './components/PersonalStats/PersonalStats';
 function App() {
   const [games, setGames] = useState([
     {
+      id: "zelda-1",
       title: "The Legend of Zelda",
       platform: "Nintendo Switch",
-      coverUrl: "https://placehold.co/150x150?text=Zelda",
+      coverUrl: "...",
       rating: 5,
       hoursPlayed: 40
     },
     {
+      id: "gow-1",
       title: "God of War",
       platform: "PlayStation 4",
-      coverUrl: "https://placehold.co/150x150?text=GOW",
+      coverUrl: "...",
       rating: 4,
       hoursPlayed: 30
-    }
+  }
   ]);
 
   const [darkMode, setDarkMode] = useState(true);

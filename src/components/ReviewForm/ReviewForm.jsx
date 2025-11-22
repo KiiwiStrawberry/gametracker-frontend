@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "./ReviewForm.css";
 import StarRating from "../StarRating/StarRating"; // ⭐ usa tu sistema existente
 
-function ReviewForm({ gameId, onReviewAdded }) {
+function ReviewForm({ gameId, gameTitle, onReviewAdded }) {
   const [text, setText] = useState("");
   const [rating, setRating] = useState(0);
   const [loading, setLoading] = useState(false);
@@ -17,9 +17,14 @@ function ReviewForm({ gameId, onReviewAdded }) {
       const response = await fetch("http://localhost:5000/api/reviews", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ gameId, text, rating }),
+        body: JSON.stringify({
+          gameId,
+          gameTitle,
+          text,
+          rating,
+          user: "Anónimo"
+        }),
       });
-
       if (!response.ok) throw new Error("Error al enviar reseña");
 
       setMessage("✅ Reseña enviada con éxito!");
